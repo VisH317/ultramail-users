@@ -9,17 +9,17 @@ export default class UltraMail {
         this.key = key
     }
 
-    public const createUser = z.function()
+    public createUser = z.function()
         .args(CreateUserArgs)
         .returns(z.promise(z.void()))
         .implement(i => console.log(i))
 
-    public const addUserAction = z.function()
+    public addUserAction = z.function()
         .args(AddUserActionArgs)
         .returns(z.promise(z.void()))
         .implement(i => console.log(i))
 
-    public const deleteUser = z.function()
+    public deleteUser = z.function()
         .args(DeleteUserArgs)
         .returns(z.promise(z.void()))
         .implement(i => console.log(i))
