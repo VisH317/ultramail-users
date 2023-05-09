@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/VisH317/ultramail-users/issues"
   },
-  "homepage": "https://github.com/VisH317/ultramail-users#readme"
+  "homepage": "https://github.com/VisH317/ultramail-users#readme",
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
 }
