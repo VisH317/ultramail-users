@@ -1,0 +1,16 @@
+import { z } from "zod";
+
+export const CreateUserArgs = z.object({
+    email: z.string(),
+    name: z.string(),
+    age: z.number()
+})
+
+export const AddUserActionArgs = z.object({
+    userEmail: z.string(),
+    action: z.string()
+})
+
+export const DeleteUserArgs = z.object({
+    user: z.string()
+})

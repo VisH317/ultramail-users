@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { z } from 'zod'
 
 export default class UltraMail {
     private key: string
@@ -7,7 +8,15 @@ export default class UltraMail {
         this.key = key
     }
 
-    public createUser() {}
-    public addUserAction() {}
-    public deleteUser() {}
+    public async createUser(): Promise<void> {
+
+    }
+
+    public async addUserAction(): Promise<void> {
+
+    }
+
+    public async deleteUser(): Promise<void> {
+
+    }
 }
