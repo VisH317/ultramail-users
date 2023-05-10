@@ -33,5 +33,19 @@ export default class UltraMail {
             console.log(`${res.status}: ${res.data}`)
         })
 
-    
+    // testing functions
+
+    public testUsers = z.function()
+        .returns(z.promise(z.boolean()))
+        .implement(async () => {
+            const res = await axios.get(`${process.env.ORIGIN}/api/auto/user`)
+            return res.status===200
+        })
+
+    public testAdd = z.function()
+        .returns(z.promise(z.boolean()))
+        .implement(async () => {
+            const res = await axios.get(`${process.env.ORIGIN}/api/auto/addUserAction`)
+            return res.status===200
+        })
 }
