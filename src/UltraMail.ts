@@ -7,6 +7,7 @@ export default class UltraMail {
 
     constructor(key: string) {
         this.key = key
+        
     }
 
     public createUser = z.function()

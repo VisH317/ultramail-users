@@ -1,2 +1,0 @@
-import UltraMail from "../UltraMail"
-
