@@ -14,3 +14,18 @@ export const AddUserActionArgs = z.object({
 export const DeleteUserArgs = z.object({
     user: z.string()
 })
+
+export interface CreateUser {
+    email: string
+    name: string
+    age: number
+}
+
+export interface AddUserAction {
+    userEmail: string
+    action: string
+}
+
+export interface DeleteUser {
+    user: string
+}
