@@ -1,2 +1,2 @@
-import UltraMail from "./UltraMail"
-import * as types from "./types"
+import UltraMail from './UltraMail';
+import * as types from './types';
