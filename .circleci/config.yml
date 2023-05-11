@@ -1,11 +1,14 @@
 # Javascript Node CircleCI 2.0 configuration file
 
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: circleci/node:16.14.2
+    - image: cimg/node:16.14.2
+      auth:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
   
 jobs:
   build:
@@ -26,7 +29,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/app
           paths: [.]
   
   test:
@@ -61,8 +64,13 @@ workflows:
           filters:
             tags:
               only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - build
       - deploy:
           filters:
             tags:
               only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - build
+            - test
       
