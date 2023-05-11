@@ -1,0 +1,68 @@
+# Javascript Node CircleCI 2.0 configuration file
+
+version: 2
+
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: circleci/node:16.14.2
+  
+jobs:
+  build:
+    <<: *defaults
+    steps: 
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}.
+          # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: npm install
+      - run:
+          name: Building package
+          command: npm run build
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+  
+  test:
+    <<: *defaults
+    steps: 
+      - attach_workspace:
+          at: ~/app
+      - run: 
+          name: testing
+          command: npm run prepublishOnly
+  
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/app
+      - run:
+          name: deploying npm package
+          command: |
+            export ORIGIN='https://ultramail.vercel.app'
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
+
+workflows:
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+      - test:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+      - deploy:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+      
