@@ -1,6 +1,6 @@
 # Javascript Node CircleCI 2.0 configuration file
 
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/app
