@@ -9,6 +9,8 @@ defaults: &defaults
       auth:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
+  environment:
+    ORIGIN: "https://ultramail.vercel.app"
   
 jobs:
   build:
