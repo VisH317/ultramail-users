@@ -12,39 +12,40 @@ export default class UltraMail {
   public createUser = z
     .function()
     .args(CreateUserArgs)
-    .returns(z.promise(z.void()))
+    .returns(z.promise(z.string()))
     .implement(async ({ email, name, age }: CreateUser) => {
       const res = await axios.post(
         `${process.env.ORIGIN}/api/auto/user`,
         { email, name, age },
         { headers: { Authorization: this.key } },
       );
-      console.log(`${res.status}: ${res.data}`);
+      return `${res.status}: ${res.data}`;
     });
 
   public addUserAction = z
     .function()
     .args(AddUserActionArgs)
-    .returns(z.promise(z.void()))
+    .returns(z.promise(z.string()))
     .implement(async ({ userEmail, action }: AddUserAction) => {
       const res = await axios.post(
         `${process.env.ORIGIN}/api/auto/addUserAction`,
         { userEmail, action },
         { headers: { Authorization: this.key } },
       );
-      console.log(`${res.status}: ${res.data}`);
+      // tslint:disable-next-line:no-console
+      return `${res.status}: ${res.data}`;
     });
 
   public deleteUser = z
     .function()
     .args(DeleteUserArgs)
-    .returns(z.promise(z.void()))
+    .returns(z.promise(z.string()))
     .implement(async ({ user }: DeleteUser) => {
       const res = await axios.delete(`${process.env.ORIGIN}/api/auto/user`, {
         params: { user },
         headers: { Authorization: this.key },
       });
-      console.log(`${res.status}: ${res.data}`);
+      return `${res.status}: ${res.data}`;
     });
 
   // testing functions
