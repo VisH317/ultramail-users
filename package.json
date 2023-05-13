@@ -1,6 +1,6 @@
 {
   "name": "ultramail-users",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A package for UltraMail clients to configure automatic user registration and activity logging for personalized emails instead of having to manually add and configure users",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
